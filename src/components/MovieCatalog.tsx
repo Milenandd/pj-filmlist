@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Search, Film, Star, Heart, Filter, AlertCircle } from 'lucide-react';
 
 // Interfaces
@@ -123,16 +123,18 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
         <div className="flex items-center gap-2">
           <Filter size={20} className="text-slate-400" />
           <select
-            value={selectedGenre}
-            onChange={(e) => setSelectedGenre(e.target.value === 'all' ? 'all' : Number(e.target.value))}
-            className="flex-1 px-4 py-2 rounded-md border border-slate-300"
-          >
-            <option value="all">Todos os Gêneros</option>
-            {genres.map(genre => (
-              <option key={genre.id} value={genre.id}>
-                {genre.name}
-              </option>
-            ))}
+  id="genre"
+  value={selectedGenre}
+  onChange={(e) => setSelectedGenre(e.target.value === 'all' ? 'all' : Number(e.target.value))}
+  className="flex-1 px-4 py-2 rounded-md border border-slate-300"
+  aria-label="Selecione um Gênero"
+>
+  <option value="all">Todos os Gêneros</option>
+  {genres.map(genre => (
+    <option key={genre.id} value={genre.id}>
+      {genre.name}
+    </option>
+  ))}
           </select>
         </div>
       </div>
@@ -160,16 +162,18 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
                     const target = e.target as HTMLImageElement;
                     target.src = 'https://via.placeholder.com/500x750?text=Sem+Imagem';
                   }}
-                />
-                <button
-                  onClick={() => toggleFavorite(movie.id)}
-                  className={`absolute top-2 right-2 p-2 rounded-full ${
-                    favorites.includes(movie.id)
-                      ? 'bg-pink-500 text-white'
-                      : 'bg-white/80 text-pink-500'
-                  }`}
-                >
-                  <Heart size={20} fill={favorites.includes(movie.id) ? 'white' : 'none'} />
+                /><button
+                onClick={() => toggleFavorite(movie.id)}
+                className={`absolute top-2 right-2 p-2 rounded-full ${
+                  favorites.includes(movie.id)
+                    ? 'bg-pink-500 text-white'
+                    : 'bg-white/80 text-pink-500'
+                }`}
+                aria-label={favorites.includes(movie.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+              >
+                <Heart size={20} fill={favorites.includes(movie.id) ? 'white' : 'none'} />
+              
+               
                 </button>
               </div>
               <div className="p-4">
