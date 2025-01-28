@@ -1,7 +1,10 @@
+//Importações e Interfaces
+
 import { useState, useEffect } from 'react';
 import { Search, Film, Star, Heart, Filter, AlertCircle } from 'lucide-react';
 
 // Interfaces
+
 interface Movie {
   id: number;
   title: string;
@@ -22,7 +25,9 @@ interface MovieCatalogProps {
 }
 
 export function MovieCatalog({ username }: MovieCatalogProps) {
-  // Estados
+ 
+  // Estados Inicial e Constantes
+
   const [movies, setMovies] = useState<Movie[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,10 +37,12 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
   const [favorites, setFavorites] = useState<number[]>([]);
 
   // API key do TMDB (usando chave de teste - em produção, use variáveis de ambiente)
+
   const API_KEY = '2c46288716a18fb7aadcc2a801f3fc6b';
   const API_BASE = 'https://api.themoviedb.org/3';
 
   // Buscar gêneros
+  
   useEffect(() => {
     const fetchGenres = async () => {
       try {
@@ -53,6 +60,7 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
   }, []);
 
   // Buscar filmes
+
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
@@ -87,6 +95,7 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
   );
 
   // Alternar favorito
+
   const toggleFavorite = (movieId: number) => {
     setFavorites(prev => 
       prev.includes(movieId)
@@ -97,20 +106,23 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
 
   return (
     <div className="max-w-7xl mx-auto">
+
       {/* Cabeçalho */}
+
       <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-violet-300 mb-2">
+        <h1 className="catalog-container">
           Catálogo de Filmes
         </h1>
-        <p className="font-semibold text-lg mb-2, text-violet-400">
+        <p className="text-wellcome">
           Bem-vindo(a), {username}! Explore nossa coleção de filmes.
         </p>
       </div>
 
       {/* Filtros e Busca */}
-      <div className="bg-purple/20 p-4 rounded-lg mb-8 space-y-4">
+      
+      <div className="pesquisa-1">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-violet-200" size={20} />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-violet-500" size={20} />
           <input
             type="text"
             value={searchQuery}
