@@ -6,7 +6,7 @@ function App() {
   const [user, setUser] = useState('');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100">
+    <div className="min-h-screen bg-gradient-to-br from-violet-900 via-violet-800 to-pink-800">
       <main className="container mx-auto px-4 py-8">
         {!user ? (
           <UserRegistration onRegister={setUser} />

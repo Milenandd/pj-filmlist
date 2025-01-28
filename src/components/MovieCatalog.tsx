@@ -99,37 +99,37 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
     <div className="max-w-7xl mx-auto">
       {/* Cabeçalho */}
       <div className="text-center mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-violet-300 mb-2">
           Catálogo de Filmes
         </h1>
-        <p className="text-slate-600">
+        <p className="font-semibold text-lg mb-2, text-violet-400">
           Bem-vindo(a), {username}! Explore nossa coleção de filmes.
         </p>
       </div>
 
       {/* Filtros e Busca */}
-      <div className="bg-white/80 p-4 rounded-lg mb-8 space-y-4">
+      <div className="bg-purple/20 p-4 rounded-lg mb-8 space-y-4">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-violet-200" size={20} />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-md border border-slate-300"
+            className="w-full pl-10 pr-4 py-2 rounded-md border border-pinkl-300"
             placeholder="Buscar filmes..."
           />
         </div>
         
         <div className="flex items-center gap-2">
-          <Filter size={20} className="text-slate-400" />
+          <Filter size={20} className="text-pink-200" />
           <select
   id="genre"
   value={selectedGenre}
   onChange={(e) => setSelectedGenre(e.target.value === 'all' ? 'all' : Number(e.target.value))}
-  className="flex-1 px-4 py-2 rounded-md border border-slate-300"
+  className="flex-1 px-4 py-2 rounded-md border border-pink-300 text-violet-400"
   aria-label="Selecione um Gênero"
 >
-  <option value="all">Todos os Gêneros</option>
+  <option value="all" className='bg-violet-100 , border-purple-300'>Todos os Gêneros</option>
   {genres.map(genre => (
     <option key={genre.id} value={genre.id}>
       {genre.name}
@@ -145,7 +145,7 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
           <p className="text-slate-600">Carregando filmes...</p>
         </div>
       ) : error ? (
-        <div className="flex items-center justify-center gap-2 text-red-500 bg-white/80 p-4 rounded-lg">
+        <div className="flex items-center justify-center gap-2 text-red-400 bg-white/80 p-4 rounded-lg">
           <AlertCircle size={20} />
           <span>{error}</span>
         </div>
@@ -167,7 +167,7 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
                 className={`absolute top-2 right-2 p-2 rounded-full ${
                   favorites.includes(movie.id)
                     ? 'bg-pink-500 text-white'
-                    : 'bg-white/80 text-pink-500'
+                    : 'bg-white/80 text-pink-600'
                 }`}
                 aria-label={favorites.includes(movie.id) ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
               >
@@ -177,11 +177,11 @@ export function MovieCatalog({ username }: MovieCatalogProps) {
                 </button>
               </div>
               <div className="p-4">
-                <h3 className="font-semibold text-lg mb-2 text-slate-800">{movie.title}</h3>
-                <div className="flex items-center gap-2 text-slate-600 mb-2">
+                <h3 className="font-semibold text-lg mb-2 text-violet-700">{movie.title}</h3>
+                <div className="flex items-center gap-2 text-slate-700 mb-2">
                   <Film size={16} />
                   <span>{new Date(movie.release_date).getFullYear()}</span>
-                  <Star size={16} className="text-yellow-500" />
+                  <Star size={16} className="text-yellow-600" />
                   <span>{movie.vote_average.toFixed(1)}</span>
                 </div>
                 <p className="text-sm text-slate-600 line-clamp-3">{movie.overview}</p>
